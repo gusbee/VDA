@@ -2,9 +2,9 @@ import React from 'react'
 import { StyleSheet, View, Text, Button } from 'react-native'
 import {connect} from 'react-redux'
 
+import Quiz from '../components/Quiz'
+import Code from '../components/Code'
 import CustomButton from '../components/CustomButton'
-import TextAndLine from '../components/TextAndLine'
-import { TouchableOpacity } from 'react-native-gesture-handler'
 
 const mapStateToProps = (state) => {
     return {
@@ -12,31 +12,7 @@ const mapStateToProps = (state) => {
     }
 }
 
-function getTextStyle(answer, element){
-    if(answer == element){
-        return question.textSelected
-    } else {
-        if(answer == ''){
-            return question.text
-        } else {
-            return question.textOpacity
-        }
-    }
-}
-
-function getElementStyle(answer, element){
-    if(answer == element){
-        return question.elementSelected
-    } else {
-        if(answer == ''){
-            return question.element
-        } else {
-            return question.elementOpacity
-        }
-    }
-}
-
-class Quiz extends React.Component{
+class PlaceChecking extends React.Component{
     
     constructor(props){
         super(props)
@@ -58,8 +34,26 @@ class Quiz extends React.Component{
         }
     }
 
+    getCheckMode = () => {
+        switch(this.state.mission.checkMode){
+            case 'quiz':
+                return (
+                    <Quiz 
+                        mission={this.state.mission}
+                        answer={this.state.answer}
+                        handleAnswer={this.handleAnswer}
+                    />
+                )
+                break
+            case 'code':
+                return <Code />
+                break
+        }
+    }
+
     render(){
         return (
+            
             <View style={zone.container}>
 
                 {/* HEADER */}
@@ -72,25 +66,7 @@ class Quiz extends React.Component{
                 {/* QUESTION */}
                 <View style={{width: 218}}>
                     
-                    {/* THE QUESTION */}
-                    <Text style={question.question}>
-                        Quel établissement se trouve à la droite du monument que vous venez de trouver ?
-                    </Text>
-                    
-                    {/* SUGGESTIONS */}
-                    <View style={question.suggestions}>
-                        {this.state.mission.checkElements.map((element, index) => (
-                            <TouchableOpacity 
-                                key={index} 
-                                style={getElementStyle(this.state.answer, element)}
-                                onPress={()=>this.handleAnswer(element)}
-                            >
-                                <Text style={getTextStyle(this.state.answer, element)}>
-                                    {element}
-                                </Text>
-                            </TouchableOpacity>
-                        ))}
-                    </View>
+                    {this.getCheckMode()}
 
                 </View>
                 
@@ -111,7 +87,7 @@ class Quiz extends React.Component{
     }
 }
 
-export default connect(mapStateToProps)(Quiz)
+export default connect(mapStateToProps)(PlaceChecking)
 
 const zone = StyleSheet.create({
     container:{

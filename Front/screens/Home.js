@@ -17,7 +17,7 @@ import End from '../screensVDA/End'
 // Routes du parcours Hors les murs
 import Missions from '../screensHLM/Missions'
 import MapHLM from '../screensHLM/MapHLM'
-import Quiz from '../screensHLM/Quiz'
+import PlaceChecking from '../screensHLM/PlaceChecking'
 import QuizResult from '../screensHLM/QuizResult'
 import TakePictureHLM from '../screensHLM/TakePictureHLM'
 import PictureResult from '../screensHLM/PictureResult'
@@ -65,7 +65,7 @@ function Home(props){
                 <Stack.Screen name='End' component={End}/>
                 <Stack.Screen name='Missions' component={Missions}/>
                 <Stack.Screen name='MapHLM' component={MapHLM}/>
-                <Stack.Screen name='Quiz' component={Quiz}/>
+                <Stack.Screen name='PlaceChecking' component={PlaceChecking}/>
                 <Stack.Screen name='QuizResult' component={QuizResult}/>
                 <Stack.Screen name='TakePictureHLM' component={TakePictureHLM}/>
                 <Stack.Screen name='PictureResult' component={PictureResult}/>

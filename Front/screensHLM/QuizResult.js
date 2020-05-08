@@ -30,41 +30,27 @@ function QuizResult(props){
             </View>
 
             {/* TEAM */}
-            <View>
+            <View style={{alignItems: 'center'}}>
                 <Text style={style.team}>{props.team}</Text>
                 <Image 
                     source={require('../images/elementsVDA/picasso-fail.png')}
                     style={style.image}
                 />
-                <TextAndLine 
-                    text={isValid ? 'Tu avances dans ton parcours' : 'On fait quoi ?'}
-                    uppercase={isValid ? false : true}
-                />
+                <View style={{flexDirection:'row'}}>
+                    <Text style={team.light}>
+                        L'erreur est humaine, soit; mais il y en a qui poussent l'humanité trop loin.
+                    </Text>
+                    <View style={team.line}></View>
+                </View>
             </View>
 
             {/* BUTTON */}
             <View style={zones.button}>
-                { isValid ? (
-                    <CustomButton 
-                        title='Allez, je continue'
-                        disabled={false}
-                        action={() => props.navigation.navigate('TakePictureVDA')}
-                    />
-                ) : (
-                    <>
-                        <CustomButtonReverse 
-                            title='Je veux rejouer...'
-                            disabled={false}
-                            action={() => props.navigation.goBack()}
-                        />
-                        <View style={{height:30}}></View>
-                        <CustomButton 
-                            title='Allez, je continue'
-                            disabled={false}
-                            action={() => props.navigation.navigate('TakePictureVDA')}
-                        />
-                    </>
-                )}
+                <CustomButton 
+                    title={isValid ? "C'était facile quand même" : "Je ne veux pas pousser l'humanité trop loin"}
+                    disabled={false}
+                    action={() => props.navigation.navigate('TakePictureHLM')}
+                />
             </View>
             
         </View>
@@ -120,5 +106,21 @@ const style = StyleSheet.create({
     image:{
         borderRadius: 13,
         marginVertical: 10,
+    }
+})
+
+const team = StyleSheet.create({
+    light: {
+        position: 'relative',
+        width: 211,
+        fontFamily: 'Gilroy-Light',
+        fontSize: 15,
+        color: '#FFFFFF',
+        borderColor: 'blue',
+        borderWidth:1
+    },
+    line:{
+        height: 1, 
+        backgroundColor:'yellow',
     }
 })

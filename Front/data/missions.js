@@ -7,7 +7,15 @@ export default [
         status: true,
         done: true,
         picture: require('../images/missions/mission1.png'),
-        markers: markersHLM.mission1
+        markers: markersHLM.mission1,
+        checkMode: 'quiz',
+        checkElements: [
+            'boulangerie',
+            'supermarché',
+            'garage',
+            'bar'
+        ],
+        checkAnswer: 'supermarché'
     },
     {
         id: 2,
@@ -16,7 +24,7 @@ export default [
         done: false,
         picture: require('../images/missions/mission2.png'),
         markers: markersHLM.mission1,
-        checkMode: 'quizz',
+        checkMode: 'quiz',
         checkElements: [
             'boulangerie',
             'supermarché',
@@ -30,27 +38,63 @@ export default [
         title: 'Mission 3',
         status: false,
         done: false,
-        picture: require('../images/missions/mission1.png')
+        picture: require('../images/missions/mission2.png'),
+        markers: markersHLM.mission1,
+        checkMode: 'quiz',
+        checkElements: [
+            'boulangerie',
+            'supermarché',
+            'garage',
+            'bar'
+        ],
+        checkAnswer: 'supermarché'
     },
     {
         id: 4,
         title: 'Mission 4',
         status: false,
         done: false,
-        picture: require('../images/missions/mission1.png')
+        picture: require('../images/missions/mission2.png'),
+        markers: markersHLM.mission1,
+        checkMode: 'quiz',
+        checkElements: [
+            'boulangerie',
+            'supermarché',
+            'garage',
+            'bar'
+        ],
+        checkAnswer: 'supermarché'
     },
     {
         id: 5,
         title: 'Mission 5',
         status: false,
         done: false,
-        picture: require('../images/missions/mission1.png')
+        picture: require('../images/missions/mission2.png'),
+        markers: markersHLM.mission1,
+        checkMode: 'quiz',
+        checkElements: [
+            'boulangerie',
+            'supermarché',
+            'garage',
+            'bar'
+        ],
+        checkAnswer: 'supermarché'
     },
     {
         id: 6,
         title: 'Mission 6',
         status: false,
         done: false,
-        picture: require('../images/missions/mission1.png')
+        picture: require('../images/missions/mission2.png'),
+        markers: markersHLM.mission1,
+        checkMode: 'quiz',
+        checkElements: [
+            'boulangerie',
+            'supermarché',
+            'garage',
+            'bar'
+        ],
+        checkAnswer: 'supermarché'
     }
 ]

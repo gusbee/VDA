@@ -48,6 +48,20 @@ export default class App extends React.Component{
             <NavigationContainer>
               <Tab.Navigator
                 initialRouteName='Home'
+                tabBarOptions={{
+                  inactiveTintColor:'#373737',
+                  activeTintColor: 'yellow',
+                  activeBackgroundColor: '#373737',
+                  inactiveBackgroundColor: '#000000', 
+                  style:{
+                    borderTopWidth: 0,
+                  },
+                  tabStyle:{
+                    borderColor: 'black',
+                    shadowColor: 'black',
+                  }          
+                }}
+                
               >
                 <Tab.Screen name='Home' component={Home} options={{tabBarVisible: false}}/>
                 <Tab.Screen name='Rewards' component={Rewards}/>

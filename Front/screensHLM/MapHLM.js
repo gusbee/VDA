@@ -67,7 +67,11 @@ class MapHLM extends React.Component{
                                 key={index}
                                 coordinate={marker.coordinates}
                                 title={marker.name}
-                                image={require('../images/icons/marker1.png')}
+                                image={marker.done ? (
+                                    require('../images/icons/marker-done.png')
+                                ) : (
+                                    require('../images/icons/marker1.png')
+                                )}
                                 onPress={() => this.setState({showInstructions: true})}
                             />
                         ))}
@@ -104,7 +108,7 @@ class MapHLM extends React.Component{
                                         title="J'ai trouvé"
                                         disabled={false}
                                         action={() => this.props.navigation.navigate(
-                                            'Quiz', 
+                                            'PlaceChecking', 
                                             {mission: mission}
                                         )}
                                     />
