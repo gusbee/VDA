@@ -8,10 +8,12 @@ import { TouchableOpacity } from 'react-native-gesture-handler'
 
 const {width} = Dimensions.get('window')
 const sideWidth = width - width * 0.3
+
+
 const mapStateToProps = (state) => {
     return {
-        name: state.name,
-        team: state.team
+        name: state.profileReducer.name,
+        team: state.profileReducer.team
     }
 }
 

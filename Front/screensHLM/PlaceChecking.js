@@ -6,9 +6,10 @@ import Quiz from '../components/Quiz'
 import Code from '../components/Code'
 import CustomButton from '../components/CustomButton'
 
+// Récupération des données du store
 const mapStateToProps = (state) => {
     return {
-        name: state.name
+        name: state.profileReducer.name
     }
 }
 

@@ -1,5 +1,4 @@
 import React from 'react'
-import { StyleSheet, View, Text } from 'react-native'
 import { createStackNavigator } from '@react-navigation/stack'
 import Start from './Start'
 import {connect} from 'react-redux'
@@ -27,13 +26,18 @@ import Reward from '../screensHLM/Reward'
 import Language from '../screensStart/Language'
 import StartParameters from '../screensStart/StartParameters'
 
+// Création de la navigation des parcours (VDA & HLM)
 const Stack = createStackNavigator()
+
+// Création de la navigation des pages de départs si aucun utilisateur n'est persisté
 const StartStack = createStackNavigator()
+
+// Récupération des données depuis le store Redux
 const mapStateToProps = (state) => {
     return {
-        language: state.profile.language,
-        name: state.profile.name,
-        team: state.profile.team
+        language: state.profileReducer.language,
+        name: state.profileReducer.name,
+        team: state.profileReducer.team
     }
 }
 

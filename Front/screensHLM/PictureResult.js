@@ -10,10 +10,12 @@ import missionsData from '../data/missionsData'
 
 const {width} = Dimensions.get('window')
 const sideWidth = width - width * 0.3
+
+// Récupération des données du store redux
 const mapStateToProps = (state) => {
     return {
-        name: state.name,
-        team: state.team
+        name: state.profileReducer.name,
+        team: state.profileReducer.team
     }
 }
 

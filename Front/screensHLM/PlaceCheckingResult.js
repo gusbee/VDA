@@ -6,7 +6,7 @@ import CustomButton from '../components/CustomButton'
 
 const mapStateToProps = (state) => {
     return {
-        team: state.team
+        team: state.profileReducer.team
     }
 }
 

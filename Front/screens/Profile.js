@@ -1,22 +1,26 @@
 import React from 'react'
 import { StyleSheet, View, Text, Image } from 'react-native'
-import {connect} from 'react-redux'
 import { TextInput, TouchableOpacity } from 'react-native-gesture-handler'
 
+// Redux
+import {connect} from 'react-redux'
+
+// Import des composants
 import Character from '../components/Character'
 import CustomButton from '../components/CustomButton'
 
+// Récupération des données depuis le store Redux
 const mapStateToProps = (state) => {
     return {
-        language: state.language,
-        name: state.name,
-        team: state.team
+        language: state.profileReducer.language,
+        name: state.profileReducer.name,
+        team: state.profileReducer.team
     }
 }
 
 class Profile extends React.Component{
 
-    constructor(props){
+    constructor(props) {
         super(props)
         this.state={
             language: '',

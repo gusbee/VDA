@@ -7,7 +7,7 @@ import TextAndLine from '../components/TextAndLine'
 
 const mapStateToProps = (state) => {
     return {
-        team: state.team
+        team: state.profileReducer.team
     }
 }
 
