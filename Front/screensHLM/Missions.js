@@ -1,6 +1,7 @@
 import React from 'react'
 import { StyleSheet, View, Text, Image, ScrollView } from 'react-native'
-import missions from '../data/missions'
+import {connect} from 'react-redux'
+import missionsData from '../data/missionsData'
 import TextAndLine from '../components/TextAndLine'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 
@@ -66,13 +67,13 @@ export default function Missions({navigation}){
             </View>
 
             <ScrollView contentContainerStyle={zones.missions}>
-                {missions.map((mission, index) => (
+                {missionsData.map((mission, index) => (
                     <View key={index} style={{marginVertical: 10}}>
                         
                         <TouchableOpacity 
                             style={getMissionStyle(mission)}
                             disabled={mission.status ? false : true}
-                            onPress={() => navigation.navigate('MapHLM', {mission: mission})}
+                            onPress={() => navigation.navigate('MapHLM', {missionData: mission})}
                         >
                             <Image source={mission.status ? (
                                 mission.picture

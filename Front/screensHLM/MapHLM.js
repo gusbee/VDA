@@ -1,17 +1,18 @@
-import React, {useRef} from 'react'
-import { StyleSheet, View, Text, Image, Dimensions, PanResponder, Animated } from 'react-native'
+import React from 'react'
+import { StyleSheet, View, Text, Image, Dimensions, PanResponder } from 'react-native'
+import { ScrollView } from 'react-native-gesture-handler'
+// MAPVIEW IMPORT
 import MapView, { PROVIDER_GOOGLE, Marker} from 'react-native-maps'
 import mapStyle from '../configMap'
-import markers from '../data/markersHLM'
+// REDUX IMPORT
 import { connect } from 'react-redux'
-
+// COMPONENTS IMPORT
 import CustomButton from '../components/CustomButton'
-import { ScrollView } from 'react-native-gesture-handler'
 
-
+//Récupération des dimensions de la fenêtre d'affichage
 const {width, height} = Dimensions.get('window')
 
-
+//Récupération des données du store Redux
 const mapStateToProps = (state) => {
     return {
         name: state.name,
@@ -25,13 +26,14 @@ class MapHLM extends React.Component{
         super(props)
         this.state={
             showInstructions: false,
+            step: 0,
             posY: 0,
         }
     }
     
     render(){
 
-        const mission = this.props.route.params.mission
+        const missionData = this.props.route.params.missionData
 
         const panResponder = PanResponder.create({
             onStartShouldSetPanResponder: (e, gestureState) => {
@@ -56,26 +58,31 @@ class MapHLM extends React.Component{
                     provider={PROVIDER_GOOGLE}
                     customMapStyle={mapStyle}
                     initialRegion={{
-                        latitude: markers.mission1[0].coordinates.latitude,
-                        longitude: markers.mission1[0].coordinates.longitude,
+                        latitude: missionData.steps[0].coordinates.latitude,
+                        longitude: missionData.steps[0].coordinates.longitude,
                         latitudeDelta: 0.01,
                         longitudeDelta: 0.01
                     }}
                 >
-                    {mission.markers.map((marker, index) => (
-                            <Marker 
-                                key={index}
-                                coordinate={marker.coordinates}
-                                title={marker.name}
-                                image={marker.done ? (
-                                    require('../images/icons/marker-done.png')
-                                ) : (
-                                    require('../images/icons/marker1.png')
-                                )}
-                                onPress={() => this.setState({showInstructions: true})}
-                            />
-                        ))}
+                    {/* AFFICHAGE DES POINTS SUR LA CARTE */}
+                    {missionData.steps.map((step, index) => (
+                        <Marker 
+                            key={index}
+                            coordinate={step.coordinates}
+                            title={step.name}
+                            image={step.done ? (
+                                require('../images/icons/marker-done.png')
+                            ) : (
+                                require('../images/icons/marker1.png')
+                            )}
+                            
+                            onPress={() => this.setState({showInstructions: true, step: index})}
+                        />
+                    ))}
+
                 </MapView>
+
+                {/* FENETRES DES INSTRUCTIONS */}
                 {this.state.showInstructions ? (
                     <View style={zones.instructionsContainer}>
                         <ScrollView>
@@ -94,22 +101,33 @@ class MapHLM extends React.Component{
                             {/* INSTRUCTIONS */}
                             <View>
                                 <View style={zones.instructions}>
+
+                                    {/* VERTICAL LINE DECORATION BETWEEN NUMBERS */}
                                     <View style={style.verticalLine}></View>
-                                    {markers.mission1[0].instructions.map((step, index) => (
+                                    
+                                    {/* LISTE DES INSTRUCTIONS DE L'EMPLACEMENT SELECTIONNE */}
+                                    {missionData.steps[this.state.step].instructions.map((step, index) => (
                                         <View key={index} style={style.instruction}>
                                             <Text style={style.stepNumber}>{index + 1}</Text>
                                             <Text style={style.stepText}>{step}</Text>
                                         </View>
                                     ))}
+
                                 </View>
 
                                 <View style={zones.button}>
                                     <CustomButton 
                                         title="J'ai trouvé"
                                         disabled={false}
-                                        action={() => this.props.navigation.navigate(
-                                            'PlaceChecking', 
-                                            {mission: mission}
+                                        action={() => (
+                                            this.setState({showInstructions: false}),
+                                            this.props.navigation.navigate(
+                                                'PlaceChecking', 
+                                                {
+                                                    missionData: missionData,
+                                                    step: this.state.step
+                                                }
+                                            )
                                         )}
                                     />
                                 </View>

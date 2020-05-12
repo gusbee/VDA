@@ -18,7 +18,7 @@ import End from '../screensVDA/End'
 import Missions from '../screensHLM/Missions'
 import MapHLM from '../screensHLM/MapHLM'
 import PlaceChecking from '../screensHLM/PlaceChecking'
-import QuizResult from '../screensHLM/QuizResult'
+import PlaceCheckingResult from '../screensHLM/PlaceCheckingResult'
 import TakePictureHLM from '../screensHLM/TakePictureHLM'
 import PictureResult from '../screensHLM/PictureResult'
 import Reward from '../screensHLM/Reward'
@@ -31,9 +31,9 @@ const Stack = createStackNavigator()
 const StartStack = createStackNavigator()
 const mapStateToProps = (state) => {
     return {
-        language: state.language,
-        name: state.name,
-        team: state.team
+        language: state.profile.language,
+        name: state.profile.name,
+        team: state.profile.team
     }
 }
 
@@ -66,7 +66,7 @@ function Home(props){
                 <Stack.Screen name='Missions' component={Missions}/>
                 <Stack.Screen name='MapHLM' component={MapHLM}/>
                 <Stack.Screen name='PlaceChecking' component={PlaceChecking}/>
-                <Stack.Screen name='QuizResult' component={QuizResult}/>
+                <Stack.Screen name='PlaceCheckingResult' component={PlaceCheckingResult}/>
                 <Stack.Screen name='TakePictureHLM' component={TakePictureHLM}/>
                 <Stack.Screen name='PictureResult' component={PictureResult}/>
                 <Stack.Screen name='Reward' component={Reward}/>

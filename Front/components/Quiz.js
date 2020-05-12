@@ -4,8 +4,7 @@ import { TouchableOpacity } from 'react-native-gesture-handler'
 
 /**
  * PROPS :
- *  question (string),
- *  suggestions (object),
+ *  step (object),
  *  answer (string),
  *  handleAnsxer (function)
  */
@@ -40,12 +39,13 @@ function getElementStyle(answer, element){
                     
             {/* THE QUESTION */}
             <Text style={question.question}>
-                Quel établissement se trouve à la droite du monument que vous venez de trouver ?
+                {props.step.checkQuestion}
             </Text>
             
             {/* SUGGESTIONS */}
             <View style={question.suggestions}>
-                {props.mission.checkElements.map((element, index) => (
+
+                {props.step.checkElements.map((element, index) => (
                     <TouchableOpacity 
                         key={index} 
                         style={getElementStyle(props.answer, element)}
@@ -56,6 +56,7 @@ function getElementStyle(answer, element){
                         </Text>
                     </TouchableOpacity>
                 ))}
+                
             </View>
 
     </>

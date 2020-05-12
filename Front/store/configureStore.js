@@ -1,4 +1,10 @@
-import { createStore } from 'redux';
-import handleProfile from './reducers/profilReducer';
+import { createStore, combineReducers } from 'redux'
+import profileReducer from './reducers/profilReducer'
+import missionsReducer from './reducers/missionsReducer'
 
-export default createStore(handleProfile);
+const reducers = combineReducers({
+    profile: profileReducer,
+    missions: missionsReducer
+})
+
+export default createStore(reducers);

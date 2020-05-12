@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, View, Text, Button } from 'react-native'
+import { StyleSheet, View, Text } from 'react-native'
 import {connect} from 'react-redux'
 
 import Quiz from '../components/Quiz'
@@ -17,7 +17,8 @@ class PlaceChecking extends React.Component{
     constructor(props){
         super(props)
         this.state={
-            mission: this.props.route.params.mission,
+            mission: this.props.route.params.missionData,
+            step: this.props.route.params.step,
             answer: '',
         }
     }
@@ -27,7 +28,7 @@ class PlaceChecking extends React.Component{
     }
 
     isValid = () => {
-        if(this.state.answer == this.props.route.params.mission.checkAnswer){
+        if(this.state.answer == this.state.mission.steps[this.state.step].checkAnswer){
             return true
         } else {
             return false
@@ -35,18 +36,24 @@ class PlaceChecking extends React.Component{
     }
 
     getCheckMode = () => {
-        switch(this.state.mission.checkMode){
+        switch(this.state.mission.steps[this.state.step].checkMode){
             case 'quiz':
                 return (
                     <Quiz 
-                        mission={this.state.mission}
+                        step={this.state.mission.steps[this.state.step]}
                         answer={this.state.answer}
                         handleAnswer={this.handleAnswer}
                     />
                 )
                 break
             case 'code':
-                return <Code />
+                return (
+                    <Code 
+                        step={this.state.mission.steps[this.state.step]}
+                        answer={this.state.answer}
+                        handleAnswer={this.handleAnswer}    
+                    />
+                )
                 break
         }
     }
@@ -76,8 +83,12 @@ class PlaceChecking extends React.Component{
                         title='Je valide ma réponse'
                         disabled={this.state.answer != '' ? false : true}
                         action={() => this.props.navigation.navigate(
-                            'QuizResult', 
-                            {isValid: this.isValid()}
+                            'PlaceCheckingResult', 
+                            {
+                                isValid: this.isValid(),
+                                missionData: this.state.mission,
+                                missionStep: this.state.step
+                            }
                         )}
                     />
                 </View>

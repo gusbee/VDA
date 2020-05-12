@@ -4,7 +4,7 @@
 const initialState = {
     language: '',
     name: '',
-    team: '',
+    team: ''
 }
 
 /**
