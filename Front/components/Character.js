@@ -1,13 +1,17 @@
 import React from 'react'
-import { StyleSheet, Image, Text} from 'react-native'
+import { StyleSheet, Image, Text, Dimensions } from 'react-native'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 
 /**
  * PROPS
  * name (string)
  * selected (string)
+ * handleTeam (function)
  * 
  */
+
+    const { width } = Dimensions.get("screen")
+
 export default function Character(props){
 
     function getSource(name, selected){
@@ -72,7 +76,7 @@ const style = StyleSheet.create({
     },
     text:{
         fontFamily: 'Gilroy-Light',
-        fontSize: 15,
+        fontSize: width < 400 ? 13 : 15,
         color: '#FFFFFF',
         textTransform: 'capitalize',
         marginVertical: 4

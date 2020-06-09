@@ -1,6 +1,7 @@
 import React from 'react'
 import { View, StatusBar } from 'react-native'
-import { AppLoading } from 'expo'
+import { AppLoading, SplashScreen } from 'expo'
+import { Asset } from 'expo-asset'
 
 // Imports React Navigation
 import { NavigationContainer } from '@react-navigation/native'
@@ -42,11 +43,28 @@ export default class App extends React.Component{
   }
 
   componentDidMount() {
-    this._loadFontsAsync();
+    this._loadFontsAsync()
+  }
+
+  _cacheSplashResourcesAsync = async () => {
+    const gif = require('./images/start/Splash.png')
+    return Asset.fromModule(gif).downloadAsync()
+  }
+
+  _cacheResourcesAsync = async () => {
+    SplashScreen.hide()
+    const images = [require('./images/start/Splash.png')]
+
+    const cacheImages = images.map(image => {
+      return Asset.fromModule(image).downloadAsync()
+    })
+
+    await Promise.all(cacheImages)
+    this.setState({ isAppReady: true })
   }
 
   render(){
-    if (this.state.fontsLoaded) {
+    if (this.state.fontsLoaded){
       let persistor = persistStore(Store)
       return (
         <View style={{ flex: 1 }}>

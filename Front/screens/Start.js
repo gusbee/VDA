@@ -1,9 +1,11 @@
 import React from 'react'
-import { StyleSheet, View, Text, Button, Image } from 'react-native'
+import { StyleSheet, View, Text, Dimensions, Image } from 'react-native'
 import {connect} from 'react-redux'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 
 import TextAndLine from '../components/TextAndLine'
+
+const { width } = Dimensions.get("screen")
 
 const mapStateToProps = (state) => {
     return {
@@ -70,7 +72,7 @@ const zones = StyleSheet.create({
 const style = StyleSheet.create({
     mainTitle:{
         fontFamily: 'Madame',
-        fontSize: 30,
+        fontSize: width < 400 ? 25 : 30,
         color: '#FFFFFF',
         textTransform: 'uppercase'
     },

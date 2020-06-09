@@ -1,23 +1,13 @@
 import missionsSteps from "../../data/missionsSteps"
+import missionsData from "../../data/missionsData"
 
 /**
- * Déclaration du state initial
+ * Déclaration du state initial 
+ * MissionX: [unlocked, done, data]
  */
 const initialState = {
-    mission1:{
-        title: "Mission 1",
-        unlocked: true,
-        done: false,
-        picture: require('../../images/missions/mission1.png'),
-        steps: missionsSteps.mission1
-    },
-    mission2:{
-        title: "Mission 2",
-        unlocked: false,
-        done: false,
-        picture: require('../../images/missions/mission2.png'),
-        steps: missionsSteps.mission2
-    }
+    mission1: [true, false, missionsData[0]],
+    mission2:[false, false, missionsData[1]]
 }
 
 /**

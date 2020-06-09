@@ -1,10 +1,12 @@
 import React from 'react'
-import { StyleSheet, View, Text, Button, TextInput, Dimensions } from 'react-native'
+import { StyleSheet, View, Text, TextInput, Dimensions } from 'react-native'
 // Redux
 import { connect } from 'react-redux'
 // Import composants
 import Character from '../components/Character'
 import CustomButton from '../components/CustomButton'
+
+const { width, height } = Dimensions.get("screen")
 
 class StartParameters extends React.Component{
 
@@ -120,7 +122,7 @@ const zones = StyleSheet.create({
         backgroundColor: '#000000'
     },
     header:{
-        minHeight: 75,
+        minHeight: width < 400 ? 55 : 75,
         alignItems: 'center',
         position: 'relative',
         marginBottom: 15,
@@ -141,33 +143,33 @@ const zones = StyleSheet.create({
 const style = StyleSheet.create({
     mainTitle:{
         fontFamily: 'Gilroy-ExtraBold',
-        fontSize: 50,
+        fontSize: width < 400 ? 40 : 50,
         color: '#F5EA3E',
         textTransform: 'uppercase',
         textAlign: 'center'
     },
     subTitle:{
         fontFamily: 'Madame',
-        fontSize: 25,
+        fontSize: width < 400 ? 20 : 25,
         color: '#FFFFFF',
         textAlign: 'center',
         position: 'absolute',
-        top: 50,
+        top: width < 400 ? 40 : 50,
     },
     textInput:{
         width: '100%',
         backgroundColor: '#FFFFFF',
-        height: 46,
-        borderRadius: 14,
+        height: width < 400 ? 32 : 46,
+        borderRadius: width < 400 ? 10 : 14,
         fontFamily: 'Gilroy-Light',
-        fontSize: 20,
+        fontSize: width < 400 ? 17 : 20,
         paddingHorizontal: 16,
         marginVertical: 15,
     },
     text:{
         width: '100%',
         fontFamily: 'Gilroy-ExtraBold',
-        fontSize: 20,
+        fontSize: width < 400 ? 17 : 20,
         color: '#FFFFFF',
         textTransform: 'uppercase',
         marginVertical: 15,

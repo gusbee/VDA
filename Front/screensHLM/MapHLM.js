@@ -15,8 +15,8 @@ const {width, height} = Dimensions.get('window')
 //Récupération des données du store Redux
 const mapStateToProps = (state) => {
     return {
-        name: state.name,
-        team: state.team
+        name: state.profileReducer.name,
+        team: state.profileReducer.team
     }
 }
 

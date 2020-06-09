@@ -1,8 +1,11 @@
 import React from 'react'
-import { StyleSheet, View, Text, Button, Image } from 'react-native'
+import { StyleSheet, View, Text, Image, Dimensions } from 'react-native'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 
+// Import des composants
 import CustomButton from '../components/CustomButton'
+
+const { width, height } = Dimensions.get("screen")
 
 export default class Language extends React.Component{
 
@@ -83,13 +86,13 @@ const disabled = StyleSheet.create({
 const style = StyleSheet.create({
     bold:{
         fontFamily: 'Gilroy-ExtraBold',
-        fontSize: 30,
+        fontSize: width < 400 ? 25 : 30,
         color: '#FFFFFF',
         textAlign: 'center',
     },
     light:{
         fontFamily: 'Gilroy-Light',
-        fontSize: 20,
+        fontSize: width < 400 ? 17 : 20,
         color: '#FFFFFF',
         textAlign: 'center',
     },
@@ -98,12 +101,16 @@ const style = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'center'
     },
-    flag:{
+    flag: {
+        width: width < 400 ? 100 : 117,
+        height: width < 400 ? 100 : 117,
         margin: 15,
         borderRadius: 13,
         opacity: .3
     },
-    selectedFlag:{
+    selectedFlag: {
+        width: width < 400 ? 100 : 117,
+        height: width < 400 ? 100 : 117,
         margin: 15,
         borderRadius: 13,
         borderColor: '#FCF12D',
