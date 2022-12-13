@@ -17,7 +17,7 @@
     "expo-asset": "~8.1.4",
     "expo-font": "~8.1.0",
     "expo-splash-screen": "~0.1.1",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "mem": "^6.1.0",
     "mysql": "^2.18.1",
     "react": "~16.9.0",
